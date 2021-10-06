@@ -711,7 +711,6 @@ class XtermWinopsTests(object):
                         esccmd.WINOP_POP_TITLE_WINDOW)
     AssertEQ(GetWindowTitle(), string1)
 
-  @knownBug(terminal="iTerm2", reason="Not implemented")
   def test_XtermWinops_DECSLPP(self):
     """Resize to n lines of height."""
     esccmd.XTERM_WINOPS(esccmd.WINOP_RESIZE_CHARS,
