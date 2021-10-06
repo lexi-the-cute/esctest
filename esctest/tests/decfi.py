@@ -27,13 +27,11 @@ from escutil import AssertEQ, AssertScreenCharsInRectEqual, GetCursorPosition, G
 class DECFITests(object):
   """Move cursor forward or scroll data within margins right."""
   @vtLevel(4)
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   def test_DECFI_Basic(self):
     esccmd.CUP(Point(5, 6))
     esccmd.DECFI()
     AssertEQ(GetCursorPosition(), Point(6, 6))
 
-  @knownBug(terminal="iTerm2", reason="Not implemented.", noop=True)
   @vtLevel(4)
   def test_DECFI_NoWrapOnRightEdge(self):
     size = GetScreenSize()
@@ -41,7 +39,6 @@ class DECFITests(object):
     esccmd.DECFI()
     AssertEQ(GetCursorPosition(), Point(size.width(), 2))
 
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   @vtLevel(4)
   def test_DECFI_Scrolls(self):
     strings = ["abcde",
@@ -70,7 +67,6 @@ class DECFITests(object):
                                   "uvwxy"])
 
   @vtLevel(4)
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   def test_DECFI_RightOfMargin(self):
     """DEC STD 070 says DECFI can move when outside the margins."""
     esccmd.DECSET(esccmd.DECLRMM)
@@ -79,7 +75,6 @@ class DECFITests(object):
     esccmd.DECFI()
     AssertEQ(GetCursorPosition(), Point(7, 1))
 
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   @vtLevel(4)
   def test_DECFI_WholeScreenScrolls(self):
     """Starting with the cursor at the right edge of the page (outside the

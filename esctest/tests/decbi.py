@@ -6,20 +6,17 @@ from escutil import AssertEQ, AssertScreenCharsInRectEqual, GetCursorPosition, P
 class DECBITests(object):
   """Move cursor back or scroll data within margins right."""
   @vtLevel(4)
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   def test_DECBI_Basic(self):
     esccmd.CUP(Point(5, 6))
     esccmd.DECBI()
     AssertEQ(GetCursorPosition(), Point(4, 6))
 
-  @knownBug(terminal="iTerm2", reason="Not implemented.", noop=True)
   @vtLevel(4)
   def test_DECBI_NoWrapOnLeftEdge(self):
     esccmd.CUP(Point(1, 2))
     esccmd.DECBI()
     AssertEQ(GetCursorPosition(), Point(1, 2))
 
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   @vtLevel(4)
   def test_DECBI_Scrolls(self):
     strings = ["abcde",
@@ -48,7 +45,6 @@ class DECBITests(object):
                                   "uvwxy"])
 
   @vtLevel(4)
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   def test_DECBI_LeftOfMargin(self):
     """Test DECBI (back-index) when the cursor is before the left-margin.
 
@@ -59,7 +55,6 @@ class DECBITests(object):
     esccmd.DECBI()
     AssertEQ(GetCursorPosition(), Point(1, 1))
 
-  @knownBug(terminal="iTerm2", reason="Not implemented.")
   @vtLevel(4)
   def test_DECBI_WholeScreenScrolls(self):
     """Test DECBI (back-index) when the cursor is before the left-margin, but
